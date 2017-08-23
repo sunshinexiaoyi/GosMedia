@@ -43,7 +43,6 @@ public class ExampleUnitTest {
         //test();
     }
 
-
     public void startServer()throws IOException{
         /*
          * 接收客户端发送的数据
