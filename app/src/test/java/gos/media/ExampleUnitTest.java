@@ -34,6 +34,7 @@ public class ExampleUnitTest {
     "http://playertest.longtailvideo.com/adaptive/captions/playlist.m3u8",
     };
 
+    //token权限测试
     InetAddress local =null;
 
     @Test
