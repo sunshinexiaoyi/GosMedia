@@ -243,6 +243,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void remoterFuncOnClick(View source) {
+        Log.i("remoterFuncOnClick","onclick.............");
         IndexClass indexClass = new IndexClass(source.getId());
         EventManager.send(CommandType.COM_SYS_REMOTE_ID, JSON.toJSONString(indexClass),EventMode.IN);
     }

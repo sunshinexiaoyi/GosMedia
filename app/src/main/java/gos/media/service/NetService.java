@@ -52,7 +52,7 @@ public class NetService extends Service {
             DataPackage dataPackage = new DataPackage();
             dataPackage.command = msg.getCommand();
             dataPackage.setData(msg.getData());
-            Log.i(TAG,"发送命令:"+dataPackage.getCommand());
+            //Log.i(TAG,"发送命令:"+dataPackage.getCommand());
             switch (dataPackage.getCommand())
             {
                 case CommandType.COM_CONNECT_GET_DEVICE:    //获取设备，发送udp广播
@@ -177,7 +177,7 @@ public class NetService extends Service {
      * @param dataPackage
      */
     private void parseDataPackage(DataPackage dataPackage){
-        Log.i(TAG,"接收命令:"+dataPackage.getCommand());
+       // Log.i(TAG,"接收命令:"+dataPackage.getCommand());
         if(CommandType.COM_SYSTEM_RESPOND == dataPackage.getCommand())//回应
         {
             Respond respond = DataParse.getRespond(dataPackage.data);
