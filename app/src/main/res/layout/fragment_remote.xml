@@ -40,7 +40,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/big_button"
+                android:background="@drawable/big_btn"
                 android:onClick="remoterFuncOnClick"
                 android:padding="4dp"
                 android:src="@drawable/ic_power_settings_new_red_24dp" />
@@ -56,15 +56,13 @@
                 android:padding="4dp"
                 android:src="@drawable/ic_settings_remote" />
 
-            <Button
+            <TextView
                 android:id="@+id/menue"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/big_button"
+                android:background="@drawable/big_btn"
                 android:onClick="remoterFuncOnClick"
+                style="@style/RemoterProperty"
                 android:text="MENU" />
 
         </TableRow>
@@ -148,7 +146,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
                         android:padding="4dp"
                         android:text="1"
@@ -161,7 +159,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
                         android:padding="4dp"
                         android:src="@drawable/ic_play_arrow_black_30dp" />
@@ -173,7 +171,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
                         android:padding="4dp"
                         android:src="@drawable/ic_pause_black_30dp" />
@@ -185,7 +183,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
                         android:padding="4dp"
                         android:src="@drawable/ic_fast_forward_black_30dp" />
@@ -205,7 +203,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
                         android:padding="4dp"
                         android:src="@drawable/ic_skip_previous_black_30dp" />
@@ -217,7 +215,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
                         android:padding="6dp"
                         android:src="@drawable/ic_fiber_manual_record_red_24dp" />
@@ -229,7 +227,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
                         android:padding="4dp"
                         android:src="@drawable/ic_stop_black_30dp" />
@@ -241,7 +239,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
                         android:padding="4dp"
                         android:src="@drawable/ic_skip_next_black_30dp" />
@@ -254,48 +252,41 @@
                     android:orientation="horizontal"
                     android:padding="8dp">
 
-                    <Button
+                    <TextView
                         android:id="@+id/set"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="SET" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/excite"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="EXCITE" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/help"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="HELP" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/figure"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
+                        style="@style/RemoterProperty"
                         android:text="123..." />
+
                 </TableRow>
             </LinearLayout>
 
@@ -313,48 +304,40 @@
                     android:orientation="horizontal"
                     android:padding="8dp">
 
-                    <Button
+                    <TextView
                         android:id="@+id/mute"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="MUTE" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/fav"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="FAV" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/pvr"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="PVR" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/exit"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="EXIT" />
                 </TableRow>
 
@@ -365,48 +348,40 @@
                     android:orientation="horizontal"
                     android:padding="8dp">
 
-                    <Button
+                    <TextView
                         android:id="@+id/number1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="1 ,.;@" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/number2"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="2 abc" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/number3"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="3 def" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/func1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="*+" />
                 </TableRow>
 
@@ -417,48 +392,40 @@
                     android:orientation="horizontal"
                     android:padding="8dp">
 
-                    <Button
+                    <TextView
                         android:id="@+id/number4"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="4 ghi" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/number5"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="5 jkl" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/number6"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="6 mno" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/number0"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="0" />
                 </TableRow>
 
@@ -469,47 +436,39 @@
                     android:orientation="horizontal"
                     android:padding="8dp">
 
-                    <Button
+                    <TextView
                         android:id="@+id/number7"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="7 pqrs" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/number8"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="8 tuv" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/number9"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
+                        style="@style/RemoterProperty"
                         android:text="9 wxyz" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/funcButton"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/little_button"
+                        android:background="@drawable/little_btn"
+                        style="@style/RemoterProperty"
                         android:text="Hot Key" />
                 </TableRow>
             </LinearLayout>
@@ -658,26 +617,22 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <Button
+            <TextView
                 android:id="@+id/guide"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/big_button"
+                android:background="@drawable/big_btn"
                 android:onClick="remoterFuncOnClick"
+                style="@style/RemoterProperty"
                 android:text="GUIDE" />
 
-            <Button
+            <TextView
                 android:id="@+id/info"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/big_button"
+                android:background="@drawable/big_btn"
                 android:onClick="remoterFuncOnClick"
+                style="@style/RemoterProperty"
                 android:text="INFO" />
 
             <ImageButton
@@ -687,7 +642,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/big_button"
+                android:background="@drawable/big_btn"
                 android:onClick="remoterFuncOnClick"
                 android:scaleType="center"
                 android:visibility="visible"

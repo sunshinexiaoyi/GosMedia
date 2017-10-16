@@ -15,7 +15,7 @@ import gos.media.R;
 public class TitleBar extends RelativeLayout {
 
     private Context mContext;
-    private ImageView rightImageView;
+    public ImageView rightImageView;
     private ImageView leftImageView;
     private TextView leftTextView;
     private LinearLayout rightLayout;
@@ -36,6 +36,9 @@ public class TitleBar extends RelativeLayout {
         init(paramContext);
     }
 
+    public ImageView getRightImageView() {
+        return rightImageView;
+    }
     private void init(Context paramContext) {
         this.mContext = paramContext;
     }

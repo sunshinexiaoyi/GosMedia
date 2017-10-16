@@ -1,11 +1,11 @@
 package gos.media.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -32,8 +32,9 @@ import gos.media.event.EventManager;
 import gos.media.event.EventMode;
 import gos.media.event.EventMsg;
 import gos.media.fragment.ConnectFragment;
-import gos.media.fragment.RemoteFragment;
 import gos.media.fragment.LiveFragment;
+import gos.media.fragment.RemoteFragment;
+import gos.media.service.NetService;
 
 public class MainActivity extends FragmentActivity {
     private  final String TAG = this.getClass().getSimpleName();
@@ -61,6 +62,7 @@ public class MainActivity extends FragmentActivity {
     protected void onDestroy() {
         Log.i(TAG,"onDestroy");
         super.onDestroy();
+        stopService(new Intent(this, NetService.class));
         EventManager.unregister(this);
     }
 
@@ -228,7 +230,6 @@ public class MainActivity extends FragmentActivity {
                                 finish();
                             }
                         },300);
-
                     }
                 }).create();             //创建AlertDialog对象
     }

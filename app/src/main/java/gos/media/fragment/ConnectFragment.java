@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +72,8 @@ public class ConnectFragment extends Fragment implements OnClickListener,OnItemC
     private View rootView = null;   //缓存页面
     private Context context;
 
+    private View viewMenu;
+    private PopupWindow popupWindow;
     private LinearLayout ll_connect = null;
     private LinearLayout ll_disconnect = null;
     private EditText editText = null;
@@ -166,7 +171,7 @@ public class ConnectFragment extends Fragment implements OnClickListener,OnItemC
 
         }
 
-        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误
+        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootView已经有parent的错误
         ViewGroup parent = (ViewGroup) rootView.getParent();
         if(null != parent){
             parent.removeView(rootView);
@@ -265,12 +270,12 @@ public class ConnectFragment extends Fragment implements OnClickListener,OnItemC
      */
     private void initLayout(View view) {
         //顶部标题栏
-        TitleBar mTitleBar = (TitleBar) view.findViewById(R.id.titlebar);
-        mTitleBar.setTitleInfoWithText(R.string.app_name, R.drawable.ic_scan, new View.OnClickListener() {
+        final TitleBar mTitleBar = (TitleBar) view.findViewById(R.id.titlebar);
+        mTitleBar.setTitleInfoWithText(R.string.app_name, R.drawable.add_function, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(context, "scan", Toast.LENGTH_SHORT).show();
-                startScan();
+                initPopWindows(v);
             }
         });
 
@@ -322,6 +327,29 @@ public class ConnectFragment extends Fragment implements OnClickListener,OnItemC
         });
     }
 
+    // 悬浮框
+    private void initPopWindows(View view) {
+        viewMenu = LayoutInflater.from(context).inflate(R.layout.menu_item ,null, false);
+        ImageView imgScan = (ImageView) viewMenu.findViewById(R.id.scan_img);
+        TextView textScan = (TextView) viewMenu.findViewById(R.id.scan_title);
+
+        imgScan.setOnClickListener(this);
+        textScan.setOnClickListener(this);
+
+        popupWindow = new PopupWindow(
+                viewMenu, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setTouchable(true);
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x6f000000));
+        popupWindow.showAsDropDown(view, -250,0);
+
+    }
+
     @Override
     public void onClick(View view) {
         switch(view.getId()){
@@ -343,6 +371,11 @@ public class ConnectFragment extends Fragment implements OnClickListener,OnItemC
             case R.id.iv_disconnect:
             case R.id.tx_disconnect:
                 detachDevice();//断开连接
+                break;
+            case R.id.scan_img:
+            case R.id.scan_title:
+                startScan();
+                popupWindow.dismiss();
                 break;
             default:
                 break;
@@ -405,7 +438,8 @@ public class ConnectFragment extends Fragment implements OnClickListener,OnItemC
             checkDevice(device);
         }catch (com.alibaba.fastjson.JSONException e){
             e.printStackTrace();
-            Toast.makeText(context, getResources().getString(R.string.scan_data_parse_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, getResources().getString(R.string.scan_data_parse_error) + "\n\n" +
+                    getResources().getString(R.string .scan_data_parse_error_hint), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -535,7 +569,8 @@ public class ConnectFragment extends Fragment implements OnClickListener,OnItemC
                         }
                     }catch (com.alibaba.fastjson.JSONException e){
                         e.printStackTrace();
-                        Toast.makeText(context, getResources().getString(R.string.scan_data_parse_error), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, getResources().getString(R.string.scan_data_parse_error) + "\n\n" +
+                                getResources().getString(R.string .scan_data_parse_error_hint), Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;

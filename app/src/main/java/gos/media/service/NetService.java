@@ -96,6 +96,10 @@ public class NetService extends Service {
     public void onDestroy() {
         super.onDestroy();
         EventManager.unregister(this);//取消订阅
+
+        if(null != netSender) {
+            netSender.close();
+        }
     }
 
     void initNetServer(){

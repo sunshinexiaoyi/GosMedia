@@ -229,7 +229,7 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
         TitleBar mTitleBar = (TitleBar) view.findViewById(R.id.titlebar);
         mTitleBar.setTitleInfoWithText(R.string.app_name);
 
-        Button figureBn = (Button)rootView.findViewById(R.id.figure);
+        TextView figureBn = (TextView)rootView.findViewById(R.id.figure);
         figureBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -237,7 +237,7 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
             }
         });
 
-        Button funcBn = (Button)rootView.findViewById(R.id.funcButton);
+        TextView funcBn = (TextView)rootView.findViewById(R.id.funcButton);
         funcBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -368,7 +368,6 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
             keyValue = keysMap.get(key);
         }
         Log.i("fragment_remote","keyValue:"+keyValue);
-
 
         if (-1 != keyValue) {
 
