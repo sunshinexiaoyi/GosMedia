@@ -24,6 +24,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.HashMap;
 
 import gos.media.R;
+import gos.media.adapter.RemoterSetting;
 import gos.media.data.IndexClass;
 import gos.media.define.CommandType;
 import gos.media.define.DataParse;
@@ -32,6 +33,8 @@ import gos.media.event.EventManager;
 import gos.media.event.EventMode;
 import gos.media.event.EventMsg;
 import gos.media.view.TitleBar;
+
+import static gos.media.R.id.set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,6 +55,7 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
     private Context context;
     private Button btnUp,btnDown,btnLeft,btnRight;
     private TextView btnVolUp,btnVolDown,btnCHUp,btnCHDown;
+    //private RemoterSetting setUp, setDown, setLeft, setRright, setOk;
     private LinearLayout layoutEpg;
     private LinearLayout layoutProglist;
     private boolean isLogKey = false;
@@ -168,6 +172,8 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
 
     @Override
     public boolean onLongClick(View view) {
+        Log.d("test","onLongClick");
+
         if (sendRemoteKey(view.getId(), KeyStatus.LONG)) {
             isLogKey = true;
             return true;
@@ -181,7 +187,8 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
             if(isLogKey) {
                 isLogKey = false;
                 if (sendRemoteKey(view.getId(), KeyStatus.UP)) {
-                    return true;
+                    Log.d("test","onTouch");
+                   // return true; //?????????????????
                 }
             }
         }
@@ -277,6 +284,7 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
         btnVolDown.setOnTouchListener(this);
         btnCHUp.setOnTouchListener(this);
         btnCHDown.setOnTouchListener(this);
+
     }
 
     public void initKeysMap()
@@ -285,17 +293,15 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
         keysMap.put(R.id.func1,KeyValue.KEYVALUE_FUNC1);
         keysMap.put(R.id.exit,KeyValue.KEYVALUE_EXIT);
         keysMap.put(R.id.menue,KeyValue.KEYVALUE_MENUE);
-        keysMap.put(R.id.up,KeyValue.KEYVALUE_UP);
         keysMap.put(R.id.info,KeyValue.KEYVALUE_INFO);
         keysMap.put(R.id.back,KeyValue.KEYVALUE_BACK);
-        keysMap.put(R.id.left,KeyValue.KEYVALUE_LEFT);
 
-
-
+        /* keysMap.put(R.id.up,KeyValue.KEYVALUE_UP);
+       keysMap.put(R.id.left,KeyValue.KEYVALUE_LEFT);
         keysMap.put(R.id.ok,KeyValue.KEYVALUE_OK);
         keysMap.put(R.id.right,KeyValue.KEYVALUE_RIGHT);
+        keysMap.put(R.id.down,KeyValue.KEYVALUE_DOWN);*/
         keysMap.put(R.id.vol_add,KeyValue.KEYVALUE_VOL_ADD);
-        keysMap.put(R.id.down,KeyValue.KEYVALUE_DOWN);
         keysMap.put(R.id.ch_add,KeyValue.KEYVALUE_CH_ADD);
         keysMap.put(R.id.vol_sub,KeyValue.KEYVALUE_VOL_SUB);
         keysMap.put(R.id.fav,KeyValue.KEYVALUE_FAV);
@@ -335,7 +341,7 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
         keysMap.put(R.id.stop,KeyValue.KEYVALUE_STOP);
         keysMap.put(R.id.skip_next,KeyValue.KEYVALUE_NEXT);
 
-        keysMap.put(R.id.set,KeyValue.KEYVALUE_SET);
+        keysMap.put(set,KeyValue.KEYVALUE_SET);
         keysMap.put(R.id.excite,KeyValue.KEYVALUE_EXCITE);
         keysMap.put(R.id.help,KeyValue.KEYVALUE_HELP);
 

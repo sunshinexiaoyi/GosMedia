@@ -503,6 +503,7 @@
                     android:gravity="center"
                     android:onClick="remoterFuncOnClick"
                     android:text="VOL+"
+                    android:background="@drawable/vol_ch_up"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -514,13 +515,22 @@
                     android:gravity="center"
                     android:onClick="remoterFuncOnClick"
                     android:text="VOL-"
+                    android:background="@drawable/vol_ch_down"
                     android:textColor="@color/black" />
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/background">
+                android:layout_height="150dp">
+              <!--  android:background="@drawable/background"-->
+
+                <gos.media.adapter.RemoterSetting
+                    android:id="@+id/remoteSet"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="remoterFuncOnClick"
+                    />
 
                 <Button
                     android:id="@+id/up"
@@ -528,7 +538,7 @@
                     android:layout_height="30dp"
                     android:layout_above="@+id/ok"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="11dp"
+                    android:layout_marginBottom="7dp"
                     android:background="@android:color/transparent"
                     android:forceHasOverlappingRendering="false"
                     android:onClick="remoterFuncOnClick" />
@@ -566,12 +576,13 @@
 
                 <Button
                     android:id="@+id/ok"
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:onClick="remoterFuncOnClick" />
+
             </RelativeLayout>
 
             <LinearLayout
@@ -593,6 +604,7 @@
                     android:gravity="center"
                     android:onClick="remoterFuncOnClick"
                     android:text="CH+"
+                    android:background="@drawable/vol_ch_up"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -604,6 +616,7 @@
                     android:gravity="center"
                     android:onClick="remoterFuncOnClick"
                     android:text="CH-"
+                    android:background="@drawable/vol_ch_down"
                     android:textColor="@color/black" />
             </LinearLayout>
 
