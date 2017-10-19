@@ -13,6 +13,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import gos.media.R;
 
 
@@ -35,12 +38,33 @@ public class RemoterSetting extends View {
         int text = Color.parseColor("#626262");
         int bg_color = Color.parseColor("#f0f0f0");
         int bg_change = Color.parseColor("#bdbdbd");
+        long downTime = 0; //按下时间
+        long moveTime = 0; //移动时间
+        boolean isLongClick = false;
 
-        //当前点击位置 0中间，3左，4右，1上，2下
+        int upKey;
+        int downKey;
+        int leftKey;
+        int rightKey;
+        int okKey;
+        int longKeyValue = -1;
+
+
+    //当前点击位置 0中间，3左，4右，1上，2下
         int clickP = -1;
 
         //private onClickItemListener onClickItemListener;
         private onTouchListener onTouchListener;
+
+        public Timer timer = new Timer(); //定时器，计时器,判断是否长按
+        public TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                onTouchListener.longClick(longKeyValue);
+                Log.e("status", "长按位置-------" + longKeyValue);
+                //isLongClick = true;
+            }
+        };
 
         public RemoterSetting(Context context) {
             this(context, null);
@@ -96,7 +120,7 @@ public class RemoterSetting extends View {
             paintW.setStyle(Paint.Style.FILL);
             switch (clickP) {
                 case 0:
-                    /**由于没有现成的箭头图片，一个笨办法，画8个线段吧！*/
+                    /**没有现成的箭头图片，画四个三角形箭头path()*/
                     //右箭头和扇形
                     //椭圆对象、起始角度、所画角度,为True时，在绘制圆弧时将圆心包括在内，通常用来绘制扇形
                     canvas.drawArc(rectf, 315, 90, true, paintW);
@@ -167,7 +191,6 @@ public class RemoterSetting extends View {
                     //中间圆和字
                     canvas.drawCircle(width / 2, height / 2, width / 5 - 7, paintW);
                     canvas.drawText(ok, (width / 2) - 55, (height / 2) + 30, paintText);
-
                     break;
                 case 2:
                     //右箭头和扇形
@@ -203,7 +226,6 @@ public class RemoterSetting extends View {
                     //中间圆和字
                     canvas.drawCircle(width / 2, height / 2, width / 5 - 7, paintW);
                     canvas.drawText(ok, (width / 2) - 55, (height / 2) + 30, paintText);
-
                     break;
                 case 3:
                     //右箭头和扇形
@@ -239,7 +261,6 @@ public class RemoterSetting extends View {
                     //中间圆和字
                     canvas.drawCircle(width / 2, height / 2, width / 5 - 7, paintW);
                     canvas.drawText(ok, (width / 2) - 55, (height / 2) + 30, paintText);
-
                     break;
                 case 4:
                     //右箭头和扇形
@@ -275,7 +296,6 @@ public class RemoterSetting extends View {
                     //中间圆和字
                     canvas.drawCircle(width / 2, height / 2, width / 5 - 7, paintW);
                     canvas.drawText(ok, (width / 2) - 55, (height / 2) + 30, paintText);
-
                     break;
                 default:
                     //右箭头和扇形
@@ -319,7 +339,6 @@ public class RemoterSetting extends View {
                     paintW.setStyle(Paint.Style.FILL);
                     canvas.drawCircle(width / 2, height / 2, width / 5 - 7, paintW);
                     canvas.drawText(ok, (width / 2) - 55, (height / 2) + 30, paintText);
-
                     break;
             }
 
@@ -340,65 +359,124 @@ public class RemoterSetting extends View {
         public boolean onTouchEvent(MotionEvent event) {
             float x = event.getX();
             float y = event.getY();
+            Log.e(TAG, "onTouchEvent: " + event.getAction());
+
             switch (event.getAction() & MotionEvent.ACTION_MASK) {
                 case MotionEvent.ACTION_MOVE:
 
+                    if ( ! isLongClick) {  //不是长按才执行
+                        isLongClick = onLongClick();
+                        Log.e("status", "长按-------" + isLongClick);
+                        if (isLongClick && (longKeyValue != -1) ) {
+                            Log.e("longKeyValue", "长按位置-------" + longKeyValue);
+                            onTouchListener.longClick(longKeyValue);
+                        }
+                    }
                     return true;
                 case MotionEvent.ACTION_DOWN:
                     if (x < 2 * width / 3 && x > width / 3 && y > 0 && y < height / 3) {
                         clickP = 1;
+                        longKeyValue = upKey;
                     } else if (x < 2 * width / 3 && x > width / 3 && y < height && y > 2 * height / 3) {
                         clickP = 2;
+                        longKeyValue = downKey;
                     } else if (x < width / 3 && x > 0 && y < 2 * height / 3 && y > height / 3) {
                         clickP = 3;
+                        longKeyValue = leftKey;
                     } else if (x < width && x > 2 * width / 3 && y > height / 3 && y < 2 * height / 3) {
                         clickP = 4;
+                        longKeyValue = rightKey;
                     } else if (x > width / 3 && x < 2 * width / 3 && y > height / 3 && y < 2 * height / 3) {
                         clickP = 0;
                     }
                     // onDraw之中调用invalidate()，会再触发onDraw，从而不停刷新显示
                     invalidate();
+                    downTime = System.currentTimeMillis();
 
                     return true;
                 case MotionEvent.ACTION_UP:
-                    Log.d(TAG, "onTouchEvent: " + clickP);
-                    invalidate();
+                    Log.e(TAG, "clickP: " + clickP);
+                    downTime = 0;
+                    moveTime = 0;
                     //当前点击位置 0中间，3左，4右，1上，2下
                     if (null != onTouchListener) {
+                        int upKeyValue = -1;
                         switch (clickP) {
                             case 0:
-                                onTouchListener.ok();
+                                upKeyValue = okKey;
                                 break;
                             case 1:
-                                onTouchListener.up();
+                                upKeyValue = upKey;
                                 break;
                             case 2:
-                                onTouchListener.down();
+                                upKeyValue = downKey;
                                 break;
                             case 3:
-                                onTouchListener.left();
+                                upKeyValue = leftKey;
                                 break;
                             case 4:
-                                onTouchListener.right();
+                                upKeyValue = rightKey;
                                 break;
+                        }
+                        //判断是否是长按，
+                        if(clickP != 0) {
+                            if (isLongClick) {//“是”--取消
+                                onTouchListener.cancleLong(upKeyValue);
+                                isLongClick = false;
+                                Log.e("status", "取消长按位置-------" + upKeyValue);
+
+                            } else {//“否”-- 点击
+                                onTouchListener.click(upKeyValue);
+                                Log.e("status", "点击位置-------" + upKeyValue);
+                            }
+                        } else {
+                            onTouchListener.click(okKey);
+                            Log.e("status", "点击位置-------" + okKey);
                         }
                     }
                     clickP = -1;
+                    invalidate();
+                    return true;
+                case MotionEvent.ACTION_CANCEL:
+                    clickP = -1;
+                    invalidate();
                     return true;
             }
+
             return false;
         }
 
-        interface onTouchListener {
-            void up();
-            void down();
-            void left();
-            void right();
-            void ok();
+    //判断是否长按,  弹起时间 - 按下时间,会出错，不能弹起后再执行；
+    public boolean onLongClick() {
+
+        moveTime = System.currentTimeMillis();
+        Log.e(TAG, "downTime:" + downTime);
+        Log.e(TAG, "moveTime:" + moveTime);
+        if((moveTime - downTime) > 300) {
+            return true;
+        }
+        return false;
+    }
+
+        public interface onTouchListener {
+
+            void click(int keyValue);
+            void longClick(int keyValue);//长按接口
+            void cancleLong(int keyValue);
+
         }
 
         public void setOnTouchListener(RemoterSetting.onTouchListener onTouchListener) {
             this.onTouchListener = onTouchListener;
+        }
+
+        //设置键值
+        public void setKeyValue(int upKey, int downKey, int leftKey, int rightKey, int okKey) {
+            this.upKey = upKey;
+            this.downKey = downKey;
+            this.leftKey = leftKey;
+            this.rightKey = rightKey;
+            this.okKey = okKey;
         }
 
 }

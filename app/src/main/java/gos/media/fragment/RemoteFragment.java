@@ -35,6 +35,11 @@ import gos.media.event.EventMsg;
 import gos.media.view.TitleBar;
 
 import static gos.media.R.id.set;
+import static gos.media.define.KeyValue.KEYVALUE_DOWN;
+import static gos.media.define.KeyValue.KEYVALUE_LEFT;
+import static gos.media.define.KeyValue.KEYVALUE_OK;
+import static gos.media.define.KeyValue.KEYVALUE_RIGHT;
+import static gos.media.define.KeyValue.KEYVALUE_UP;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,17 +60,16 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
     private Context context;
     private Button btnUp,btnDown,btnLeft,btnRight;
     private TextView btnVolUp,btnVolDown,btnCHUp,btnCHDown;
-    //private RemoterSetting setUp, setDown, setLeft, setRright, setOk;
     private LinearLayout layoutEpg;
     private LinearLayout layoutProglist;
-    private boolean isLogKey = false;
+    private boolean isLongKey = false;  //是否长按
     HashMap<Integer,Integer> keysMap = new HashMap();
 
     private ImageButton settingsRemote ;
     private enum KeyStatus{
-        NORMAL,
-        LONG,
-        UP
+        NORMAL, //正常调台
+        LONG,  // 长按
+        UP    //取消长按
     }
 
     private final int WHAT_SETTING_REMOTE_CANCLE = 1;
@@ -173,9 +177,8 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
     @Override
     public boolean onLongClick(View view) {
         Log.d("test","onLongClick");
-
         if (sendRemoteKey(view.getId(), KeyStatus.LONG)) {
-            isLogKey = true;
+            isLongKey = true;
             return true;
         }
         return false;
@@ -184,17 +187,19 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if(motionEvent.getAction() == MotionEvent.ACTION_UP){
-            if(isLogKey) {
-                isLogKey = false;
+            if(isLongKey) {
+                isLongKey = false;
                 if (sendRemoteKey(view.getId(), KeyStatus.UP)) {
                     Log.d("test","onTouch");
-                   // return true; //?????????????????
+                    return true; //???
                 }
             }
         }
 
         return false;
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -258,32 +263,55 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
     }
 
     private void initView(){
-        btnUp      = (Button) rootView.findViewById(R.id.up);
+        /*btnUp      = (Button) rootView.findViewById(R.id.up);
         btnDown    = (Button) rootView.findViewById(R.id.down);
         btnLeft    = (Button) rootView.findViewById(R.id.left);
-        btnRight   = (Button) rootView.findViewById(R.id.right);
+        btnRight   = (Button) rootView.findViewById(R.id.right);*/
+
         btnVolUp   = (TextView) rootView.findViewById(R.id.vol_add);
         btnVolDown = (TextView) rootView.findViewById(R.id.vol_sub);
         btnCHUp    = (TextView) rootView.findViewById(R.id.ch_add);
         btnCHDown  = (TextView) rootView.findViewById(R.id.ch_sub);
 
-        btnUp.setOnLongClickListener(this);
+        /*btnUp.setOnLongClickListener(this);
         btnDown.setOnLongClickListener(this);
         btnLeft.setOnLongClickListener(this);
-        btnRight.setOnLongClickListener(this);
+        btnRight.setOnLongClickListener(this);*/
+
         btnVolUp.setOnLongClickListener(this);
         btnVolDown.setOnLongClickListener(this);
         btnCHUp.setOnLongClickListener(this);
         btnCHDown.setOnLongClickListener(this);
 
-        btnUp.setOnTouchListener(this);
+        /*btnUp.setOnTouchListener(this);
         btnDown.setOnTouchListener(this);
         btnLeft.setOnTouchListener(this);
-        btnRight.setOnTouchListener(this);
+        btnRight.setOnTouchListener(this);*/
+
         btnVolUp.setOnTouchListener(this);
         btnVolDown.setOnTouchListener(this);
         btnCHUp.setOnTouchListener(this);
         btnCHDown.setOnTouchListener(this);
+
+        RemoterSetting remoteSet = (RemoterSetting) rootView.findViewById(R.id.remoteSet);
+        remoteSet.setKeyValue(KEYVALUE_UP, KEYVALUE_DOWN, KEYVALUE_LEFT, KEYVALUE_RIGHT, KEYVALUE_OK);
+        remoteSet.setOnTouchListener(new RemoterSetting.onTouchListener() {
+
+            @Override
+            public void click(int keyValue) {
+                sendKeyValue(keyValue, KeyStatus.NORMAL);
+            }
+
+            @Override
+            public void longClick(int keyValue) {
+                sendKeyValue(keyValue, KeyStatus.LONG);
+            }
+
+            @Override
+            public void cancleLong(int keyValue) {
+                sendKeyValue(keyValue, KeyStatus.UP);
+            }
+        });
 
     }
 
@@ -367,29 +395,30 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
 
     public boolean sendRemoteKey(int id, KeyStatus keyStatus) {
         int keyValue = -1;
-
         Integer key = new Integer(id);
         if(keysMap.containsKey(key))
         {
             keyValue = keysMap.get(key);
         }
-        Log.i("fragment_remote","keyValue:"+keyValue);
-
         if (-1 != keyValue) {
-
-            IndexClass indexClass = new IndexClass(keyValue);
-            if(keyStatus == KeyStatus.LONG) {
-                EventManager.send(CommandType.COM_REMOTE_SET_LONG_KEY, JSON.toJSONString(indexClass), EventMode.OUT);
-            }else if(keyStatus == KeyStatus.UP){
-                EventManager.send(CommandType.COM_REMOTE_SET_KEY_UP, JSON.toJSONString(indexClass), EventMode.OUT);
-            }else{
-                EventManager.send(CommandType.COM_REMOTE_SET_KEY, JSON.toJSONString(indexClass), EventMode.OUT);
-            }
-            settingsRemote.setSelected(true);
-            handler.sendEmptyMessageDelayed(WHAT_SETTING_REMOTE_CANCLE,300);
-                return true;
+            sendKeyValue(keyValue, keyStatus);
         }
         return false;
+    }
+
+    public boolean sendKeyValue(int keyValue, KeyStatus keyStatus) {
+        Log.i("fragment_remote","keyValue:" + keyValue);
+        IndexClass indexClass = new IndexClass(keyValue);
+        if(keyStatus == KeyStatus.LONG) {
+            EventManager.send(CommandType.COM_REMOTE_SET_LONG_KEY, JSON.toJSONString(indexClass), EventMode.OUT);
+        }else if(keyStatus == KeyStatus.UP){
+            EventManager.send(CommandType.COM_REMOTE_SET_KEY_UP, JSON.toJSONString(indexClass), EventMode.OUT);
+        }else{
+            EventManager.send(CommandType.COM_REMOTE_SET_KEY, JSON.toJSONString(indexClass), EventMode.OUT);
+        }
+        settingsRemote.setSelected(true);
+        handler.sendEmptyMessageDelayed(WHAT_SETTING_REMOTE_CANCLE,300);
+        return true;
     }
 
 }
