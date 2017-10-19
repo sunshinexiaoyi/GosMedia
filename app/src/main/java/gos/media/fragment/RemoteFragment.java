@@ -303,12 +303,17 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
             }
 
             @Override
-            public void longClick(int keyValue) {
-                sendKeyValue(keyValue, KeyStatus.LONG);
+            public void longClick(final int keyValue) {
+                getActivity().runOnUiThread(new Runnable() {//更新到ui线程
+                    @Override
+                    public void run() {
+                        sendKeyValue(keyValue, KeyStatus.LONG);
+                    }
+                });
             }
 
             @Override
-            public void cancleLong(int keyValue) {
+            public void cancelLong(int keyValue) {
                 sendKeyValue(keyValue, KeyStatus.UP);
             }
         });
