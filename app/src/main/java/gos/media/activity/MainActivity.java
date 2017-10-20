@@ -63,6 +63,7 @@ public class MainActivity extends FragmentActivity {
         Log.i(TAG,"onDestroy");
         super.onDestroy();
         stopService(new Intent(this, NetService.class));
+        android.os.Process.killProcess(android.os.Process.myPid());
         EventManager.unregister(this);
     }
 
@@ -230,6 +231,7 @@ public class MainActivity extends FragmentActivity {
                                 finish();
                             }
                         },300);
+
                     }
                 }).create();             //创建AlertDialog对象
     }

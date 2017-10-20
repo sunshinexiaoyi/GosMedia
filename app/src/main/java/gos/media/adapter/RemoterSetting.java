@@ -56,7 +56,7 @@ public class RemoterSetting extends View {
         private onTouchListener onTouchListener;
 
         public Timer timer = new Timer(); //定时器，计时器,判断是否长按
-        public TimerTask timerTask = null;//监听长按的线程
+        public TimerTask timerTask = null;//监听长按的任务
         class LongTimerTask extends TimerTask{
             int keyValue;
             public LongTimerTask(int keyValue){
@@ -392,7 +392,7 @@ public class RemoterSetting extends View {
                     downTime = System.currentTimeMillis();
                     if(0 !=clickP){//ok键无法触发长按
                         timerTask = new LongTimerTask(curKeyValue);
-                        timer.schedule(timerTask,1000);
+                        timer.schedule(timerTask,800);
                     }
                     return true;
                 case MotionEvent.ACTION_UP:
@@ -418,7 +418,7 @@ public class RemoterSetting extends View {
                                 curKeyValue = rightKey;
                                 break;
                         }
-                        if (!isLongClick) {//“是”--取消
+                        if ( ! isLongClick) {//“是”--取消
                             onTouchListener.click(curKeyValue);
                             Log.e("status", "点击位置:" + curKeyValue);
                         }
@@ -439,15 +439,15 @@ public class RemoterSetting extends View {
         }
 
         public void cancelLongTask(){
-            if(null !=timerTask){
-                timerTask.cancel();
-                timerTask = null;
-                isLongClick = false;
-
+            if(null != timerTask){
                 if (isLongClick) {//“是”--取消
                     Log.e("status","取消长按:"+curKeyValue);
                     onTouchListener.cancelLong(curKeyValue);
                 }
+
+                timerTask.cancel();
+                timerTask = null;
+                isLongClick = false;
 
             }
         }

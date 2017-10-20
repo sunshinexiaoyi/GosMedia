@@ -231,9 +231,12 @@ public class LiveFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(null != curProgram){     //停止上一个节目
+                //去掉此判断，进入fragment时，curProgram本身就null，若是在这边stop，会发消息使curProgram赋值成null
+                //因发消息是要时间，底下刚把curProgram赋值，但收到消息又置成null，导致无法播放
+                /*if(null != curProgram){     //停止上一个节目
+                    System.out.println("1111 stopProgram ..");
                     stopProgram(curProgram.getIndex());
-                }
+                }*/
                 curProgram = programList.get(position);
                 Log.i(TAG,"getIndex:\n"+curProgram.getIndex());
                 getProgramUrl(curProgram.getIndex());
@@ -344,7 +347,6 @@ public class LiveFragment extends Fragment {
 
     private void detach(){
         setProgramList(new String[0]);  //清空节目列表
-
         errorMaskView.setErrorStatus(true,R.string.jump_connect);
         errorMaskView.setOnRetry(R.string.jump,new View.OnClickListener() {
             @Override

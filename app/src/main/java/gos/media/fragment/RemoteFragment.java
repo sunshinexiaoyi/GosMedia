@@ -34,7 +34,6 @@ import gos.media.event.EventMode;
 import gos.media.event.EventMsg;
 import gos.media.view.TitleBar;
 
-import static gos.media.R.id.set;
 import static gos.media.define.KeyValue.KEYVALUE_DOWN;
 import static gos.media.define.KeyValue.KEYVALUE_LEFT;
 import static gos.media.define.KeyValue.KEYVALUE_OK;
@@ -198,8 +197,6 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
 
         return false;
     }
-
-
 
     /**
      * This interface must be implemented by activities that contain this
@@ -374,7 +371,7 @@ public class RemoteFragment extends Fragment implements View.OnLongClickListener
         keysMap.put(R.id.stop,KeyValue.KEYVALUE_STOP);
         keysMap.put(R.id.skip_next,KeyValue.KEYVALUE_NEXT);
 
-        keysMap.put(set,KeyValue.KEYVALUE_SET);
+        keysMap.put(R.id.set,KeyValue.KEYVALUE_SET);
         keysMap.put(R.id.excite,KeyValue.KEYVALUE_EXCITE);
         keysMap.put(R.id.help,KeyValue.KEYVALUE_HELP);
 
