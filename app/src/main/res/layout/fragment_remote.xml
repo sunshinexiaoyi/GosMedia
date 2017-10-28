@@ -440,7 +440,7 @@
                         android:background="@drawable/little_btn"
                         android:onClick="remoterFuncOnClick"
                         style="@style/RemoterProperty"
-                        android:text="*+" />
+                        android:text="TV/R" />
                 </TableRow>
 
                 <TableRow

@@ -152,183 +152,186 @@ public class RemoterSetting extends View {
             paintB.setColor(text);
             paintB.setStyle(Paint.Style.FILL);
             paintW.setStyle(Paint.Style.FILL);
+            int mHeight = Math.min(height, width);// 宽度与高度可能不相等
+
+            path.reset(); //重置
             switch (clickP) {
                 case 0:
                     /**没有现成的箭头图片，画四个三角形箭头path()*/
                     //右箭头和扇形
                     //椭圆对象、起始角度、所画角度,为True时，在绘制圆弧时将圆心包括在内，通常用来绘制扇形
                     canvas.drawArc(rectf, 315, 90, true, paintW);
-                    path.moveTo(width - 95, height / 2 - 30);
-                    path.lineTo(width - 55, height / 2);
-                    path.lineTo(width - 95, height / 2 + 30);
+                    path.moveTo((width / 4) * 3, height / 2 - 29);
+                    path.lineTo((width / 4) * 3 + 40, height / 2);
+                    path.lineTo((width / 4) * 3, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //上箭头和扇形
                     canvas.drawArc(rectf, 225, 90, true, paintW);
-                    path.moveTo(width / 2, 50);
-                    path.lineTo(width / 2 + 30, 90);
-                    path.lineTo(width / 2 - 30, 90);
+                    path.moveTo(width / 2, (height / 4) - 40);
+                    path.lineTo(width / 2 + 29, height / 4);
+                    path.lineTo(width / 2 - 29, height / 4);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //左箭头和扇形
                     canvas.drawArc(rectf, 135, 90, true, paintW);
-                    path.moveTo(55, height / 2);
-                    path.lineTo(95, height / 2 - 30);
-                    path.lineTo(95, height / 2 + 30);
+                    path.moveTo((width / 4) - 40, height / 2);
+                    path.lineTo(width / 4, height / 2 - 29);
+                    path.lineTo(width / 4, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //下箭头和扇形
                     canvas.drawArc(rectf, 45, 90, true, paintW);
-                    path.moveTo(width / 2 - 30, height - 90);
-                    path.lineTo(width / 2 + 30, height - 90);
-                    path.lineTo(width / 2, height - 50);
+                    path.moveTo(width / 2 - 29, (height / 4) * 3);
+                    path.lineTo(width / 2 + 29, (height / 4) * 3);
+                    path.lineTo(width / 2, (height / 4) * 3 + 40);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //中间圆和字
                     //paintText.setColor(Color.WHITE);
                     paintB.setColor(bg_change);
-                    canvas.drawCircle(width / 2, height / 2, height / 5 - 15, paintB);
+                    canvas.drawCircle(width / 2, height / 2, mHeight / 5 - 15, paintB);
                     canvas.drawText(ok, (width / 2) - 35, (height / 2) + 20, paintText);
                     //paintText.setColor(blue);
                     break;
                 case 1:
                     //右箭头和扇形
                     canvas.drawArc(rectf, 315, 90, true, paintW);
-                    path.moveTo(width - 95, height / 2 - 30);
-                    path.lineTo(width - 55, height / 2);
-                    path.lineTo(width - 95, height / 2 + 30);
+                    path.moveTo((width / 4) * 3, height / 2 - 29);
+                    path.lineTo((width / 4) * 3 + 40, height / 2);
+                    path.lineTo((width / 4) * 3, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //上箭头和扇形
                     paintW.setColor(bg_change);
                     canvas.drawArc(rectf, 225, 90, true, paintW);
-                    path.moveTo(width / 2, 50);
-                    path.lineTo(width / 2 + 30, 90);
-                    path.lineTo(width / 2 - 30, 90);
+                    path.moveTo(width / 2, (height / 4) - 40);
+                    path.lineTo(width / 2 + 29, height / 4);
+                    path.lineTo(width / 2 - 29, height / 4);
                     path.close();
                     canvas.drawPath(path, paintB);
                     paintW.setColor(bg_color);
                     //左箭头和扇形
                     canvas.drawArc(rectf, 135, 90, true, paintW);
-                    path.moveTo(55, height / 2);
-                    path.lineTo(95, height / 2 - 30);
-                    path.lineTo(95, height / 2 + 30);
+                    path.moveTo((width / 4) - 40, height / 2);
+                    path.lineTo(width / 4, height / 2 - 29);
+                    path.lineTo(width / 4, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //下箭头和扇形
                     canvas.drawArc(rectf, 45, 90, true, paintW);
-                    path.moveTo(width / 2 - 30, height - 90);
-                    path.lineTo(width / 2 + 30, height - 90);
-                    path.lineTo(width / 2, height - 50);
+                    path.moveTo(width / 2 - 29, (height / 4) * 3);
+                    path.lineTo(width / 2 + 29, (height / 4) * 3);
+                    path.lineTo(width / 2, (height / 4) * 3 + 40);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //中间圆和字
-                    canvas.drawCircle(width / 2, height / 2, height / 5 - 15, paintW);
+                    canvas.drawCircle(width / 2, height / 2, mHeight / 5 - 15, paintW);
                     canvas.drawText(ok, (width / 2) - 35, (height / 2) + 20, paintText);
                     break;
                 case 2:
                     //右箭头和扇形
                     canvas.drawArc(rectf, 315, 90, true, paintW);
-                    path.moveTo(width - 95, height / 2 - 30);
-                    path.lineTo(width - 55, height / 2);
-                    path.lineTo(width - 95, height / 2 + 30);
+                    path.moveTo((width / 4) * 3, height / 2 - 29);
+                    path.lineTo((width / 4) * 3 + 40, height / 2);
+                    path.lineTo((width / 4) * 3, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //上箭头和扇形
                     canvas.drawArc(rectf, 225, 90, true, paintW);
-                    path.moveTo(width / 2, 50);
-                    path.lineTo(width / 2 + 30, 90);
-                    path.lineTo(width / 2 - 30, 90);
+                    path.moveTo(width / 2, (height / 4) - 40);
+                    path.lineTo(width / 2 + 29, height / 4);
+                    path.lineTo(width / 2 - 29, height / 4);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //左箭头和扇形
                     canvas.drawArc(rectf, 135, 90, true, paintW);
-                    path.moveTo(55, height / 2);
-                    path.lineTo(95, height / 2 - 30);
-                    path.lineTo(95, height / 2 + 30);
+                    path.moveTo((width / 4) - 40, height / 2);
+                    path.lineTo(width / 4, height / 2 - 29);
+                    path.lineTo(width / 4, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //下箭头和扇形
                     paintW.setColor(bg_change);
                     canvas.drawArc(rectf, 45, 90, true, paintW);
-                    path.moveTo(width / 2 - 30, height - 90);
-                    path.lineTo(width / 2 + 30, height - 90);
-                    path.lineTo(width / 2, height - 50);
+                    path.moveTo(width / 2 - 29, (height / 4) * 3);
+                    path.lineTo(width / 2 + 29, (height / 4) * 3);
+                    path.lineTo(width / 2, (height / 4) * 3 + 40);
                     path.close();
                     canvas.drawPath(path, paintB);
                     paintW.setColor(bg_color);
                     //中间圆和字
-                    canvas.drawCircle(width / 2, height / 2, height / 5 - 15, paintW);
+                    canvas.drawCircle(width / 2, height / 2, mHeight / 5 - 15, paintW);
                     canvas.drawText(ok, (width / 2) - 35, (height / 2) + 20, paintText);
                     break;
                 case 3:
                     //右箭头和扇形
                     canvas.drawArc(rectf, 315, 90, true, paintW);
-                    path.moveTo(width - 95, height / 2 - 30);
-                    path.lineTo(width - 55, height / 2);
-                    path.lineTo(width - 95, height / 2 + 30);
+                    path.moveTo((width / 4) * 3, height / 2 - 29);
+                    path.lineTo((width / 4) * 3 + 40, height / 2);
+                    path.lineTo((width / 4) * 3, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //上箭头和扇形
                     canvas.drawArc(rectf, 225, 90, true, paintW);
-                    path.moveTo(width / 2, 50);
-                    path.lineTo(width / 2 + 30, 90);
-                    path.lineTo(width / 2 - 30, 90);
+                    path.moveTo(width / 2, (height / 4) - 40);
+                    path.lineTo(width / 2 + 29, height / 4);
+                    path.lineTo(width / 2 - 29, height / 4);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //左箭头和扇形
                     paintW.setColor(bg_change);
                     canvas.drawArc(rectf, 135, 90, true, paintW);
-                    path.moveTo(55, height / 2);
-                    path.lineTo(95, height / 2 - 30);
-                    path.lineTo(95, height / 2 + 30);
+                    path.moveTo((width / 4) - 40, height / 2);
+                    path.lineTo(width / 4, height / 2 - 29);
+                    path.lineTo(width / 4, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     paintW.setColor(bg_color);
                     //下箭头和扇形
                     canvas.drawArc(rectf, 45, 90, true, paintW);
-                    path.moveTo(width / 2 - 30, height - 90);
-                    path.lineTo(width / 2 + 30, height - 90);
-                    path.lineTo(width / 2, height - 50);
+                    path.moveTo(width / 2 - 29, (height / 4) * 3);
+                    path.lineTo(width / 2 + 29, (height / 4) * 3);
+                    path.lineTo(width / 2, (height / 4) * 3 + 40);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //中间圆和字
-                    canvas.drawCircle(width / 2, height / 2, height / 5 - 15, paintW);
+                    canvas.drawCircle(width / 2, height / 2, mHeight / 5 - 15, paintW);
                     canvas.drawText(ok, (width / 2) - 35, (height / 2) + 20, paintText);
                     break;
                 case 4:
                     //右箭头和扇形
                     paintW.setColor(bg_change);
                     canvas.drawArc(rectf, 315, 90, true, paintW);
-                    path.moveTo(width - 95, height / 2 - 30);
-                    path.lineTo(width - 55, height / 2);
-                    path.lineTo(width - 95, height / 2 + 30);
+                    path.moveTo((width / 4) * 3, height / 2 - 29);
+                    path.lineTo((width / 4) * 3 + 40, height / 2);
+                    path.lineTo((width / 4) * 3, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     paintW.setColor(bg_color);
                     //上箭头和扇形
                     canvas.drawArc(rectf, 225, 90, true, paintW);
-                    path.moveTo(width / 2, 50);
-                    path.lineTo(width / 2 + 30, 90);
-                    path.lineTo(width / 2 - 30, 90);
+                    path.moveTo(width / 2, (height / 4) - 40);
+                    path.lineTo(width / 2 + 29, height / 4);
+                    path.lineTo(width / 2 - 29, height / 4);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //左箭头和扇形
                     canvas.drawArc(rectf, 135, 90, true, paintW);
-                    path.moveTo(55, height / 2);
-                    path.lineTo(95, height / 2 - 30);
-                    path.lineTo(95, height / 2 + 30);
+                    path.moveTo((width / 4) - 40, height / 2);
+                    path.lineTo(width / 4, height / 2 - 29);
+                    path.lineTo(width / 4, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //下箭头和扇形
                     canvas.drawArc(rectf, 45, 90, true, paintW);
-                    path.moveTo(width / 2 - 30, height - 90);
-                    path.lineTo(width / 2 + 30, height - 90);
-                    path.lineTo(width / 2, height - 50);
+                    path.moveTo(width / 2 - 29, (height / 4) * 3);
+                    path.lineTo(width / 2 + 29, (height / 4) * 3);
+                    path.lineTo(width / 2, (height / 4) * 3 + 40);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //中间圆和字
-                    canvas.drawCircle(width / 2, height / 2, height / 5 - 15, paintW);
+                    canvas.drawCircle(width / 2, height / 2, mHeight / 5 - 15, paintW);
                     canvas.drawText(ok, (width / 2) - 35, (height / 2) + 20, paintText);
                     break;
                 default:
@@ -337,45 +340,44 @@ public class RemoterSetting extends View {
                     //canvas.drawLine(width - 50, height / 2 + 3, width - 80, height / 2 - 28, paintB);
                     //canvas.drawLine(width - 50, height / 2 - 3, width - 80, height / 2 + 28, paintB);
                      /*画一个实心三角形*/
-                    path.moveTo(width - 95, height / 2 - 30);
-                    path.lineTo(width - 55, height / 2);
-                    path.lineTo(width - 95, height / 2 + 30);
+                    path.moveTo((width / 4) * 3, height / 2 - 29);
+                    path.lineTo((width / 4) * 3 + 40, height / 2);
+                    path.lineTo((width / 4) * 3, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //上箭头和扇形
                     canvas.drawArc(rectf, 225, 90, true, paintW);
                     //canvas.drawLine(width / 2 + 3, 50, width / 2 - 28, 80, paintB);
                     //canvas.drawLine(width / 2 - 3, 50, width / 2 + 28, 80, paintB);
-                    path.moveTo(width / 2, 50);
-                    path.lineTo(width / 2 + 30, 90);
-                    path.lineTo(width / 2 - 30, 90);
+                    path.moveTo(width / 2, (height / 4) - 40);
+                    path.lineTo(width / 2 + 29, height / 4);
+                    path.lineTo(width / 2 - 29, height / 4);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //左箭头和扇形
                     canvas.drawArc(rectf, 135, 90, true, paintW);
                     //canvas.drawLine(50, height / 2 + 3, 80, height / 2 - 28, paintB);
                     //canvas.drawLine(50, height / 2 - 3, 80, height / 2 + 28, paintB);
-                    path.moveTo(55, height / 2);
-                    path.lineTo(95, height / 2 - 30);
-                    path.lineTo(95, height / 2 + 30);
+                    path.moveTo((width / 4) - 40, height / 2);
+                    path.lineTo(width / 4, height / 2 - 29);
+                    path.lineTo(width / 4, height / 2 + 29);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //下箭头和扇形
                     canvas.drawArc(rectf, 45, 90, true, paintW);
                     //canvas.drawLine(width / 2 + 3, height - 50, height / 2 - 28, height - 80, paintB);
                     //canvas.drawLine(width / 2 - 3, height - 50, height / 2 + 28, height - 80, paintB);
-                    path.moveTo(width / 2 - 30, height - 90);
-                    path.lineTo(width / 2 + 30, height - 90);
-                    path.lineTo(width / 2, height - 50);
+                    path.moveTo(width / 2 - 29, (height / 4) * 3);
+                    path.lineTo(width / 2 + 29, (height / 4) * 3);
+                    path.lineTo(width / 2, (height / 4) * 3 + 40);
                     path.close();
                     canvas.drawPath(path, paintB);
                     //中间圆和字
                     paintW.setStyle(Paint.Style.FILL);
-                    canvas.drawCircle(width / 2, height / 2, height / 5 - 15, paintW);
+                    canvas.drawCircle(width / 2, height / 2, mHeight / 5 - 15, paintW);
                     canvas.drawText(ok, (width / 2) - 35, (height / 2) + 20, paintText);
                     break;
             }
-            int mHeight = Math.min(height, width);// 宽度与高度可能不相等
             paintB.setStyle(Paint.Style.STROKE); //空心效果
             paintB.setStrokeWidth(20);  //线宽
             //canvas.drawColor(bg_color); //画布背景
@@ -424,7 +426,6 @@ public class RemoterSetting extends View {
                     }
                     return true;
                 case MotionEvent.ACTION_UP:
-                    Log.e(TAG, "ACTION_UP: " + clickP);
                     //当前点击位置 0中间，3左，4右，1上，2下
                     if (null != onTouchListener) {
                         switch (clickP) {
@@ -449,7 +450,6 @@ public class RemoterSetting extends View {
                             Log.e("status", "点击位置:" + curKeyValue);
                         }
                         cancelLongTask();
-
                     }
                     clickP = -1;
                     invalidate();
