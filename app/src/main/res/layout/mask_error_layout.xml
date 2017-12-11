@@ -41,10 +41,10 @@
         <TextView
             android:id="@+id/retryTitle"
             android:layout_width="120.0dip"
-            android:layout_height="30.0dip"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="51.0dip"
-            android:background="@drawable/btn_refresh_bg"
+            android:layout_marginTop="41.0dip"
+            android:background="@color/gray_item"
             android:gravity="center"
             android:text="@string/clickRefresh"
             android:textColor="@color/red"

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--主页-->
+    <string name="app_name">Gos Media</string>
+    <string name="title_activity_init">InitActivité</string>
+
+    <string name="tab_menu_remote">Remote</string>
+    <string name="tab_menu_live">Direct</string>
+    <string name="tab_menu_connect">Connection</string>
+
+    <!--退出弹出框-->
+    <string name="exit_dialog_title">Info système</string>
+    <string name="exit_dialog_content">Etes vous sur de vouloir sortir ?</string>
+    <string name="exit_dialog_cancel">annuler</string>
+    <string name="exit_dialog_confirm">Confirmer</string>
+
+    <!--连接模块-->
+
+    <!--服务器连接界面设置 -->
+    <string name = "connect_set_server">Mettez l\'adresse du serveur</string>
+    <string name = "connect_edit_server_address">Mettez l\'adresse du serveur SVP</string>
+    <string name = "connect_confirm">Connection</string>
+    <string name = "connect_format">Erreur sur format d\'adresse, essayez de nouveau</string>
+    <string name = "connect_hint">L\'adresse ne peut pas être vide</string>
+    <string name = "connect_attach">Appareil non connecté</string>
+    <string name = "connect_detach">Appareil déconnecté</string>
+    <string name = "connect_detach_hint">Détachez l\'appareil</string>
+    <string name = "connect_try_connect">Essayez de connecter l\'appareil...</string>
+
+    <!--扫码-->
+    <string name="ret">Retour</string>
+    <string name="scan_title">Scannez l\'appareil</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="scan_text">Mettez le code barre</string>
+    <string name="scan_data_parse_error">Annalyse et recherche des données anormale</string>
+    <string name="allow_camera_permission">Veuillez autoriser l\'appareil photo</string>
+
+    <!--播放器部分-->
+    <string name="small_problem">Problème du lecteur</string>
+    <string name="not_support">Lecteur non reconnu</string>
+
+    <string name="pref_key_enable_background_play">Pref.choisir la lecture en arriere-play</string>
+    <string name="pref_key_player">pref.player</string>
+    <string name="switch_freq">Switch frequency point, is nearing the end of the current live</string>
+    <string name="heartbeat_stop">Serveur ne répond pas</string>
+
+    <!-- 直播部分 -->
+    <string name="jump_connect">Pas de connection</string>
+    <string name="jump">Cliquer pour vous connecter</string>
+    <string name="pref_key_using_media_codec">pref.utiliser codec media</string>
+    <string name="pref_key_using_media_codec_auto_rotate">pref.using_media_codec_auto_rotate</string>
+    <string name="pref_key_media_codec_handle_resolution_change">pref.media_codec_handle_resolution_change</string>
+    <string name="pref_key_pixel_format">pref.pixel_format</string>
+
+    <!-- -->
+    <string name="pref_key_using_opensl_es">pref.choisir opensl-es</string>
+
+    <!-- -->
+    <string name="pref_key_enable_no_view">pref.utiliser no view</string>
+    <string name="pref_key_enable_surface_view">pref.utiliser surface view</string>
+    <string name="pref_key_enable_texture_view">pref.utiliser vue texture</string>
+    <string name="pref_key_enable_detached_surface_texture">pref.utiliser detached surface texture
+</string>
+    <!-- -->
+    <string name="pref_key_using_mediadatasource">Pref.utiliser source méta données</string>
+    <string name="pref_key_last_directory"></string>
+
+    <string name="clickRefresh">Cliquez pour rafraîchir</string>
+    <string name="empty_list">Aucune donnée</string>
+    <string name="netError">Erreur de connection réseau</string>
+    <string name="loading">Chargement……</string>
+
+    <!--VideoView-->
+    <string name="VideoView_error_text_invalid_progressive_playback">Invalid progressive playback</string>
+    <string name="VideoView_error_text_unknown">Inconnu</string>
+    <string name="VideoView_error_button">OK</string>
+
+    <string name="VideoView_ar_aspect_fit_parent">Aspect / Fit parent</string>
+    <string name="VideoView_ar_aspect_fill_parent">Aspect / Fill parent</string>
+    <string name="VideoView_ar_aspect_wrap_content">Aspect / Wrap content</string>
+    <string name="VideoView_ar_match_parent">Free / Fill parent</string>
+    <string name="VideoView_ar_16_9_fit_parent">16:9 / Fit parent</string>
+    <string name="VideoView_ar_4_3_fit_parent">4:3 / Fit parent</string>
+
+    <string name="VideoView_render_none">Restitution : nulle</string>
+    <string name="VideoView_render_surface_view">Restitution : Vue périphérique</string>
+    <string name="VideoView_render_texture_view">Restitution : Vue textuelle</string>
+
+    <string name="VideoView_player_AndroidMediaPlayer">Player: AndroidMediaPlayer</string>
+    <string name="VideoView_player_IjkMediaPlayer">Player: IjkMediaPlayer</string>
+    <string name="VideoView_player_IjkExoMediaPlayer">Player: IjkExoMediaPlayer</string>
+
+    <!--mi-->
+    <string name="mi_player">Player</string>
+    <string name="mi_media">Media</string>
+    <string name="mi_profile_level">Niveau</string>
+    <string name="mi_pixel_format">Format pixel</string>
+    <string name="mi_resolution">Resolution</string>
+    <string name="mi_length">Length</string>
+    <string name="mi_stream_fmt1">Stream #%d</string>
+    <string name="mi_type">Type</string>
+    <string name="mi_language">Langue</string>
+    <string name="mi_codec">Codec</string>
+    <string name="mi_frame_rate">Fréquence d\'images</string>
+    <string name="mi_bit_rate">Bit rate</string>
+    <string name="mi_sample_rate">Sample rate</string>
+    <string name="mi_channels">Channels</string>
+    <string name="mi__selected_video_track">*</string>
+    <string name="mi__selected_audio_track">*</string>
+    <string name="mi__selected_subtitle_track">*</string>
+
+    <string name="N_A">N/A</string>
+    <string name="close">Fermer</string>
+    <string name="vdec">vdec</string>
+    <string name="fps">fps</string>
+    <string name="v_cache">v-cache</string>
+    <string name="a_cache">a-cache</string>
+    <string name="load_cost">load-cost</string>
+    <string name="seek_cost">seek_cost</string>
+    <string name="seek_load_cost">seek_load_cost</string>
+    <string name="tcp_speed">tcp_speed</string>
+    <string name="bit_rate">bit_rate</string>
+    <string name="media_information">Media Information</string>
+
+    <string name="TrackType_video">Video</string>
+    <string name="TrackType_audio">Audio</string>
+    <string name="TrackType_subtitle">Subtitle</string>
+    <string name="TrackType_timedtext">Timed text</string>
+    <string name="TrackType_metadata">Meta données</string>
+    <string name="TrackType_unknown">Inconnu</string>
+</resources>
