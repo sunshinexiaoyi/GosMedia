@@ -28,7 +28,7 @@
     <color name="gray5">#ffbdbdbd</color>
 
     <color name="white1">#ffeeeef1</color>
-    <color name="white">#ffffffff</color>
+    <color name="white2">#ffffffff</color>
     <color name="transparent">#00000000</color>
     <color name="dialog_divider_color">#ffcccdd1</color>
     <color name="gray">#eaeaea</color>
@@ -43,6 +43,7 @@
     <color name="black_text">#080808</color>
     <color name="red_buy">#ff391e</color>
 
+    <color name="white">#ffffffff</color>
     <color name="green_text">#ff7beb1d</color>
     <color name="white_text">#ffffffff</color>
     <color name="main_blue">#ff54bceb</color>

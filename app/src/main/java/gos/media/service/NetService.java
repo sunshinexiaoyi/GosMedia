@@ -29,8 +29,9 @@ public class NetService extends Service {
     public static NetProtocol.UdpUnicastSocket netSender = null;
     public static NetProtocol.UdpUnicastSocket netReceiver = null;
 
-    private Timer wifiTimer = null;
-    private Timer serverTimer = null;
+    private  Timer wifiTimer = null;
+    private  Timer serverTimer = null;
+    private  Timer wifiListenTimer = null;
 
     private String localIP;
     private String deviceIP;
@@ -104,6 +105,7 @@ public class NetService extends Service {
 
     void initNetServer(){
         initWifi();
+        wifiChangeListen();
     }
 
     void initWifi (){
@@ -136,6 +138,27 @@ public class NetService extends Service {
         },0,1000);
     }
 
+    private void wifiChangeListen(){
+        wifiListenTimer = new Timer();
+        wifiListenTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                WifiManager wifiMng = (WifiManager)(getApplicationContext().getSystemService(Context.WIFI_SERVICE));
+                int wifiState = wifiMng.getWifiState();
+                if(wifiState == WifiManager.WIFI_STATE_ENABLED){
+                    String strLocalIP ;
+                    WifiInfo wifiInfo = wifiMng.getConnectionInfo();
+                    strLocalIP = getLocalIP(wifiInfo);
+                    if(strLocalIP != null && !(strLocalIP.equals(localIP))){
+                        System.out.println("strLocalIP="+strLocalIP+",localIP="+localIP);
+                        localIP = strLocalIP;
+                        stopServerTimer();
+                        startServer();
+                    }
+                }
+            }
+        },1000,1000);
+    }
 
     private void initHeartbeatPacket(){
         heartbeatPacket = new HeartbeatPacket(new HeartbeatStop(){
@@ -175,6 +198,12 @@ public class NetService extends Service {
         }
     }
 
+    private void stopServerTimer(){
+        if(serverTimer != null){
+            serverTimer.cancel();
+            serverTimer = null;
+        }
+    }
 
     /**
      * 解析包数据
@@ -222,7 +251,6 @@ public class NetService extends Service {
      * @param dataPackage
      */
     private void sendRespond(DataPackage dataPackage){
-
         Respond respond = new Respond(dataPackage.getCommand(),true);
         EventManager.send(CommandType.COM_SYSTEM_RESPOND, JSON.toJSONString(respond), EventMode.OUT);
     }
