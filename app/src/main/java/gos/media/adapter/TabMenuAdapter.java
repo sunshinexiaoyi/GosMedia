@@ -3,11 +3,8 @@ package gos.media.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.view.ViewGroup;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 
 /**
@@ -48,7 +45,6 @@ public class TabMenuAdapter extends FragmentPagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        System.out.println("position Destory" + position);
 
         super.destroyItem(container, position, object);
     }
