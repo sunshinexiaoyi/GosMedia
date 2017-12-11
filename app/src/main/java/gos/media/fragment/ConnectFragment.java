@@ -346,7 +346,7 @@ public class ConnectFragment extends Fragment implements OnClickListener,OnItemC
             }
         });
         popupWindow.setBackgroundDrawable(new ColorDrawable(0x6f000000));
-        popupWindow.showAsDropDown(view, -250,0);
+        popupWindow.showAsDropDown(view);
 
     }
 

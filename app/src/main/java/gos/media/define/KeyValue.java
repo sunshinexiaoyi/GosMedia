@@ -67,6 +67,7 @@ public class KeyValue {
     public static final int KEYVALUE_GREEN = 46; //green
     public static final int KEYVALUE_YELLOW = 47; //yellow
     public static final int KEYVALUE_BLUE = 48;  //blue
+
     public static final int KEYVALUE_EXCITE = 49;
     public static final int KEYVALUE_HELP = 50;
 }
