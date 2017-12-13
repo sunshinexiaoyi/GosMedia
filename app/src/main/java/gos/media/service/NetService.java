@@ -101,6 +101,10 @@ public class NetService extends Service {
     public void onDestroy() {
         super.onDestroy();
         EventManager.unregister(this);//取消订阅
+
+        if(null != netSender) {
+            netSender.close();
+        }
     }
 
     void initNetServer(){
@@ -189,7 +193,6 @@ public class NetService extends Service {
         }
     }
 
-
     /**
      * 解析包数据
      * @param dataPackage
@@ -236,7 +239,6 @@ public class NetService extends Service {
      * @param dataPackage
      */
     private void sendRespond(DataPackage dataPackage){
-
         Respond respond = new Respond(dataPackage.getCommand(),true);
         EventManager.send(CommandType.COM_SYSTEM_RESPOND, JSON.toJSONString(respond), EventMode.OUT);
     }
