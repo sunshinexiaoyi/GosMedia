@@ -1,54 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--主页-->
-    <string name="app_name">Gos Media</string>
+    <string name="app_name">高斯影音</string>
     <string name="title_activity_init">InitActivity</string>
 
-    <string name="tab_menu_remote">Remote</string>
-    <string name="tab_menu_live">Live</string>
-    <string name="tab_menu_connect">Connect</string>
+    <string name="tab_menu_remote">遥控器</string>
+    <string name="tab_menu_live">直播</string>
+    <string name="tab_menu_connect">连接</string>
 
     <!--退出弹出框-->
-    <string name="exit_dialog_title">System Info</string>
-    <string name="exit_dialog_content">Are you sure to exit?</string>
-    <string name="exit_dialog_cancel">cancel</string>
-    <string name="exit_dialog_confirm">confirm</string>
+    <string name="exit_dialog_title">系统信息</string>
+    <string name="exit_dialog_content">你确定要退出吗?</string>
+    <string name="exit_dialog_cancel">取消</string>
+    <string name="exit_dialog_confirm">确定</string>
 
-    <!--连接模块-->
-
-    <!--服务器连接界面设置 -->
-    <string name = "connect_set_server">Set the address of the server</string>
-    <string name = "connect_edit_server_address">Please enter the address of the server</string>
-    <string name = "connect_confirm">CONNECT</string>
-    <string name = "connect_format">Address format error, please enter again</string>
-    <string name = "connect_hint">address can not null</string>
-    <string name = "connect_attach">Device is connected</string>
-    <string name = "connect_detach">Device has been disconnected</string>
-    <string name = "connect_detach_hint">detach the device</string>
-    <string name = "connect_try_connect">Try to connect device...</string>
+    <!--服务器连接界面设置-->
+    <string name = "connect_set_server">设置服务器地址</string>
+    <string name = "connect_edit_server_address">请输入服务器地址</string>
+    <string name = "connect_confirm">连接</string>
+    <string name = "connect_hint">地址不能为空</string>
+    <string name = "connect_format">地址格式错误,请重新输入</string>
+    <string name = "connect_attach">设备已连接</string>
+    <string name = "connect_detach">设备已断开</string>
+    <string name = "connect_detach_hint">断开连接</string>
+    <string name = "connect_try_connect">尝试连接设备...</string>
 
     <!--扫码-->
-    <string name="ret">back</string>
-    <string name="scan_title">Scan Connected Server</string>
-    <string name="menu_scan">Connect to Server</string>
+    <string name="scan_title">连接服务器</string>
+    <string name="ret">返回</string>
+    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="scan_text">Please put the qr code/bar code in the box</string>
-    <string name="scan_data_parse_error">Data analytical data parsing anomaly</string>
-    <string name="scan_data_parse_error_hint">Please scan qr code connect to the server</string>
-    <string name="allow_camera_permission">Please allow camera permissions</string>
+    <string name="scan_text">请将二维码/条码放入框内</string>
+    <string name="scan_data_parse_error">数据解析异常</string>
+    <string name="allow_camera_permission">请允许开启照相机权限</string>
 
     <!--播放器部分-->
-    <string name="small_problem">player small problem</string>
-    <string name="not_support">player not support</string>
-
+    <string name="small_problem">播放器出现了一点问题</string>
+    <string name="not_support">播放器不支持</string>
     <string name="pref_key_enable_background_play">pref.enable_background_play</string>
     <string name="pref_key_player">pref.player</string>
-    <string name="switch_freq">Switch frequency point, is nearing the end of the current live</string>
-    <string name="heartbeat_stop">With the server lost</string>
+    <string name="switch_freq">主频点已切换，即将结束当前直播</string>
+    <string name="heartbeat_stop">与服务器失联</string>
 
-    <!-- 直播部分 -->
-    <string name="jump_connect">There is no connection, please connect</string>
-    <string name="jump">Click to connect</string>
+    <!-- 直播部分-->
+    <string name="jump_connect">尚未连接，请连接</string>
+    <string name="jump">点击连接</string>
+
     <string name="pref_key_using_media_codec">pref.using_media_codec</string>
     <string name="pref_key_using_media_codec_auto_rotate">pref.using_media_codec_auto_rotate</string>
     <string name="pref_key_media_codec_handle_resolution_change">pref.media_codec_handle_resolution_change</string>
@@ -67,10 +63,10 @@
     <string name="pref_key_using_mediadatasource">pref.using_mediadatasource</string>
     <string name="pref_key_last_directory"></string>
 
-    <string name="clickRefresh">Click to fresh</string>
-    <string name="empty_list">No data</string>
-    <string name="netError">Network connection error</string>
-    <string name="loading">Loading…</string>
+    <string name="clickRefresh">点击刷新</string>
+    <string name="netError">网络连接错误</string>
+    <string name="loading">加载中…</string>
+    <string name="empty_list">暂无数据</string>
 
     <!--VideoView-->
     <string name="VideoView_error_text_invalid_progressive_playback">Invalid progressive playback</string>
@@ -130,4 +126,5 @@
     <string name="TrackType_timedtext">Timed text</string>
     <string name="TrackType_metadata">Meta data</string>
     <string name="TrackType_unknown">Unknown</string>
+
 </resources>

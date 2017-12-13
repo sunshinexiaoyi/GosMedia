@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="bg_topbar">#FF4081</color>
@@ -25,6 +25,8 @@
     <color name="gray2">#ff86878b</color>
     <color name="gray3">#ffa7a7ab</color>
     <color name="gray4">#ff787878</color>
+    <color name="gray5">#ffbdbdbd</color>
+
     <color name="white1">#ffeeeef1</color>
     <color name="white2">#ffffffff</color>
     <color name="transparent">#00000000</color>

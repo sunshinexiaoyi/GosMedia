@@ -1,11 +1,11 @@
 package gos.media.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -32,8 +32,9 @@ import gos.media.event.EventManager;
 import gos.media.event.EventMode;
 import gos.media.event.EventMsg;
 import gos.media.fragment.ConnectFragment;
-import gos.media.fragment.RemoteFragment;
 import gos.media.fragment.LiveFragment;
+import gos.media.fragment.RemoteFragment;
+import gos.media.service.NetService;
 
 public class MainActivity extends FragmentActivity {
     private  final String TAG = this.getClass().getSimpleName();
@@ -61,6 +62,8 @@ public class MainActivity extends FragmentActivity {
     protected void onDestroy() {
         Log.i(TAG,"onDestroy");
         super.onDestroy();
+        stopService(new Intent(this, NetService.class));
+        android.os.Process.killProcess(android.os.Process.myPid());
         EventManager.unregister(this);
     }
 
@@ -243,6 +246,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void remoterFuncOnClick(View source) {
+        Log.i("remoterFuncOnClick","onclick.............");
         IndexClass indexClass = new IndexClass(source.getId());
         EventManager.send(CommandType.COM_SYS_REMOTE_ID, JSON.toJSONString(indexClass),EventMode.IN);
     }

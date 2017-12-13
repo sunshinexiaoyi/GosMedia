@@ -38,6 +38,9 @@ interface CommandOut{
     /*遥控器模块命令*/
     byte COM_REMOTE_SET_KEY = 30; //发送遥控器键值
 
+    byte COM_REMOTE_SET_LONG_KEY = 31; //发送遥控器长按键值
+
+    byte COM_REMOTE_SET_KEY_UP = 32; //发送遥控器长按松开的键值
 }
 
 /**

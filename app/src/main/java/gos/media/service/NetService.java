@@ -13,6 +13,11 @@ import com.alibaba.fastjson.JSON;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -96,12 +101,20 @@ public class NetService extends Service {
     public void onDestroy() {
         super.onDestroy();
         EventManager.unregister(this);//取消订阅
+
+        if(null != netSender) {
+            netSender.close();
+        }
     }
 
     void initNetServer(){
-        initWifi();
+        //`initWifi();
+        initNet();
     }
 
+    /**
+     * 初始化wifi
+     */
     void initWifi (){
         wifiTimer = new Timer();
 
@@ -131,6 +144,15 @@ public class NetService extends Service {
             }
         },0,1000);
     }
+
+    void initNet(){
+        localIP = getLocalIpAddress();
+        if(null != localIP){
+            startServer();
+        }
+    }
+
+
 
 
     private void initHeartbeatPacket(){
@@ -170,7 +192,6 @@ public class NetService extends Service {
             e.printStackTrace();
         }
     }
-
 
     /**
      * 解析包数据
@@ -218,7 +239,6 @@ public class NetService extends Service {
      * @param dataPackage
      */
     private void sendRespond(DataPackage dataPackage){
-
         Respond respond = new Respond(dataPackage.getCommand(),true);
         EventManager.send(CommandType.COM_SYSTEM_RESPOND, JSON.toJSONString(respond), EventMode.OUT);
     }
@@ -230,6 +250,26 @@ public class NetService extends Service {
         }
         return  ((ipAddress & 0xff)+"."+(ipAddress>>8 & 0xff)+"."
                 +(ipAddress>>16 & 0xff)+"."+(ipAddress>>24 & 0xff));
+    }
+
+    public String getLocalIpAddress(){
+        try{
+            Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
+            while(en.hasMoreElements()){
+                NetworkInterface nif = en.nextElement();
+                Enumeration<InetAddress> enumIpAddr = nif.getInetAddresses();
+                while(enumIpAddr.hasMoreElements()){
+                    InetAddress mInetAddress = enumIpAddr.nextElement();
+                    if(!mInetAddress.isLoopbackAddress() &&  (mInetAddress instanceof Inet4Address)){
+                        return mInetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        }catch(SocketException ex){
+            Log.e("MyFeiGeActivity", "获取本地IP地址失败");
+        }
+
+        return null;
     }
 
 }
